@@ -1,0 +1,1584 @@
+/* Stili Base */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+    color: #e0e0e0;
+    text-align: center;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+    margin-bottom: 20px;
+}
+
+h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+button {
+    padding: 12px 24px;
+    margin: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+
+button:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.7);
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+textarea, input[type="number"] {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    font-size: 1rem;
+    resize: none;
+    box-shadow: inset 0 0 10px rgba(0, 255, 234, 0.2);
+}
+
+textarea::placeholder, input::placeholder {
+    color: #a0a0a0;
+}
+
+/* Layout Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ship {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.ship:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 234, 0.5);
+}
+
+.ship img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.ship h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.log {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 250px;
+    border-radius: 10px;
+}
+
+.skill-warning {
+    color: #ff4c4c;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ff4c4c;
+}
+
+/* Responsive Design */
+@media (min-width: 600px) {
+    .ship {
+        width: 45%;
+    }
+}
+
+@media (min-width: 900px) {
+    .ship {
+        width: 30%;
+    }
+}
+
+/* Stili per i pulsanti di Azione */
+.action-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #ff4c4c;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #ff4c4c;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+}
+
+.action-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+/* Stili per le carte degli oggetti */
+.card {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.card h4 {
+    margin: 10px 0 5px;
+    color: #00ffea;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #ff4c4c;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #ff4c4c;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 5px rgba(255, 76, 76, 0.5);
+}
+
+.card button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+#objects-area {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Aggiungi questa regola per visualizzare le carte in orizzontale */
+#player-objects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Per schermi più piccoli, imposta la direzione verticale */
+@media (max-width: 600px) {
+    #player-objects-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Stili per la Modale Generale */
+.modal {
+    display: none; /* Nascosta di default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Sfondo semi-trasparente */
+}
+
+/* Contenuto della Modale */
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #00ffea;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+/* Pulsante di Chiusura */
+.modal .close {
+    color: #ff4c4c;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Stili per il pulsante degli oggetti usati */
+#used-objects-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px;
+    border: none;
+    background-color: rgba(0, 255, 234, 0.7);
+    color: #1a1a1a;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+
+#used-objects-button:hover {
+    background-color: rgba(0, 255, 234, 1);
+}
+
+.death-mode {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Stili per il contenitore dei controlli */
+#controls {
+    position: fixed;
+    bottom: 20px; /* Distanza dal bordo inferiore della finestra */
+    left: 50%;    /* Centra il contenitore orizzontalmente */
+    transform: translateX(-50%); /* Regola la posizione per centrare */
+    z-index: 1000; /* Assicura che sia sopra gli altri elementi */
+    display: flex;
+    gap: 10px;
+}
+
+/* Opzionale: se vuoi che i pulsanti siano impilati verticalmente su schermi piccoli */
+@media (max-width: 600px) {
+    #controls {
+        flex-direction: column;
+        bottom: 10px;
+    }
+}
+
+/* Aggiungi un padding inferiore all'area di gioco */
+#game-area {
+    padding-bottom: 80px; /* Altezza dei pulsanti + spazio extra */
+}
+
+/* Assicurati che il contenitore della nave sia posizionato in modo relativo */
+.ship {
+    position: relative;
+}
+
+/* Stili per l'overlay di distruzione */
+.ship-overlay {
+    display: none; /* Nascosto di default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.7); /* Rosso semi-trasparente */
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 15px; /* Stesso raggio di bordo della classe .ship */
+    z-index: 1;
+}
+
+.skill-description {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin: 10px 0; /* Aumenta il margine superiore e inferiore */
+    text-align: left;
+    line-height: 1.4; /* Migliora l'interlinea per una lettura più facile */
+}
+
+/* Stili per la tabella del Cerchio degli Estri */
+.cerchio-estri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cerchio-estri-table th,
+.cerchio-estri-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cerchio-estri-table th {
+    background-color: #1a1a1a;
+    color: #00ffea;
+    font-weight: bold;
+}
+
+.cerchio-estri-table td {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.cerchio-estri-table td.positive {
+    color: #2ecc40; /* Verde per i bonus */
+}
+
+.cerchio-estri-table td.negative {
+    color: #ff4136; /* Rosso per i malus */
+}
+
+/* Stili per l'header della modale del Cerchio degli Estri */
+#cerchio-estri-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* Stili per il logo VS nell'animazione */
+#logo-vs {
+    display: none; /* Nascondi di default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+}
+
+/* Stili per l'animazione della sfida */
+#animazione-sfida {
+    display: none; /* Nascondi di default */
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#immagine-attaccante, #immagine-difensore {
+    width: 45%;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+}
+
+#immagine-attaccante {
+    float: left;
+}
+
+#immagine-difensore {
+    float: right;
+}
+
+/* Stili per il risultato della sfida */
+#risultato-sfida {
+    clear: both;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Stili per l'effetto macchina da scrivere */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e0e0e0; }
+}
+
+.typewriter-effect {
+    overflow: hidden;
+    border-right: .15em solid #e0e0e0;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typewriter 3.5s steps(40, end),
+        blinkCursor .75s step-end infinite;
+}
+
+/* Stili per i campi di input e i pulsanti nelle carte */
+.carta input[type="number"] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.carta .btn-incremento,
+.carta .btn-decremento {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.carta .btn-incremento:hover,
+.carta .btn-decremento:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    transform: scale(1.05);
+}
+
+/* Stili per il contenitore delle carte */
+#container-carte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stili per le carte */
+.carta {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.carta:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+.carta h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.carta p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Stili per le icone degli estri */
+.icona-estro {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Stili per i valori modificati */
+.valore-modificato {
+    color: #ff4c4c;
+}
+
+/* Stili per il log delle modifiche */
+#contenitore-log {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.log-entry {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+/* Sezione Bersagli */
+#target-section {
+    display: none; /* Nascosto per impostazione predefinita */
+    background-color: #0a0707b5; !important /* Stesso sfondo delle modali */
+    border: 2px solid #00ffea; /* Bordo coerente con le modali */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px; /* Stesso raggio delle modali */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    color: #e0e0e0; /* Colore del testo coerente */
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5); /* Ombra coerente */
+}
+
+#target-section.active {
+    display: block;
+    max-height: 500px; /* Adatta secondo necessità */
+    opacity: 1;
+}
+
+#target-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea; /* Colore del titolo coerente */
+    text-shadow: 0 0 5px #00ffea; /* Effetto luminoso */
+    margin-bottom: 15px;
+}
+
+#target-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #e0e0e0; /* Colore coerente per il testo */
+    margin-bottom: 10px;
+}
+
+#target-section .close-button {
+    border: 2px solid #ff4c4c;
+    color: #ff4c4c;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+    float: right;
+}
+
+#target-section .close-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+
+/* Stili per la tabella del Cerchio degli Estri */
+.cerchio-estri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cerchio-estri-table th,
+.cerchio-estri-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cerchio-estri-table th {
+    background-color: #1a1a1a;
+    color: #00ffea;
+    font-weight: bold;
+}
+
+.cerchio-estri-table td {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.cerchio-estri-table td.positive {
+    color: #2ecc40; /* Verde per i bonus */
+}
+
+.cerchio-estri-table td.negative {
+    color: #ff4136; /* Rosso per i malus */
+}
+
+/* Stili per l'header della modale del Cerchio degli Estri */
+#cerchio-estri-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* Stili per il logo VS nell'animazione */
+#logo-vs {
+    display: none; /* Nascondi di default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+}
+
+/* Stili per l'animazione della sfida */
+#animazione-sfida {
+    display: none; /* Nascondi di default */
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#immagine-attaccante, #immagine-difensore {
+    width: 45%;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+}
+
+#immagine-attaccante {
+    float: left;
+}
+
+#immagine-difensore {
+    float: right;
+}
+
+/* Stili per il risultato della sfida */
+#risultato-sfida {
+    clear: both;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Stili per l'effetto macchina da scrivere */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e0e0e0; }
+}
+
+.typewriter-effect {
+    overflow: hidden;
+    border-right: .15em solid #e0e0e0;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typewriter 3.5s steps(40, end),
+        blinkCursor .75s step-end infinite;
+}
+
+/* Stili per i campi di input e i pulsanti nelle carte */
+.carta input[type="number"] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.carta .btn-incremento,
+.carta .btn-decremento {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.carta .btn-incremento:hover,
+.carta .btn-decremento:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    transform: scale(1.05);
+}
+
+/* Stili per il contenitore delle carte */
+#container-carte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stili per le carte */
+.carta {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.carta:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+.carta h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.carta p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Stili per le icone degli estri */
+.icona-estro {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Stili per i valori modificati */
+.valore-modificato {
+    color: #ff4c4c;
+}
+
+/* Stili per il log delle modifiche */
+#contenitore-log {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.log-entry {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+/* Sezione Bersagli */
+#target-section {
+    display: none; /* Nascosto per impostazione predefinita */
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffea;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+#target-section.active {
+    display: block;
+    max-height: 500px; /* Adatta secondo necessità */
+    opacity: 1;
+}
+
+#target-section .close-button {
+    border: 2px solid #ff4c4c;
+    color: #ff4c4c;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+    float: right;
+}
+
+#target-section .close-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+/* Stili per la tabella del Cerchio degli Estri */
+.cerchio-estri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cerchio-estri-table th,
+.cerchio-estri-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cerchio-estri-table th {
+    background-color: #1a1a1a;
+    color: #00ffea;
+    font-weight: bold;
+}
+
+.cerchio-estri-table td {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.cerchio-estri-table td.positive {
+    color: #2ecc40; /* Verde per i bonus */
+}
+
+.cerchio-estri-table td.negative {
+    color: #ff4136; /* Rosso per i malus */
+}
+
+/* Stili per l'header della modale del Cerchio degli Estri */
+#cerchio-estri-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* Stili per il logo VS nell'animazione */
+#logo-vs {
+    display: none; /* Nascondi di default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+}
+
+/* Stili per l'animazione della sfida */
+#animazione-sfida {
+    display: none; /* Nascondi di default */
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#immagine-attaccante, #immagine-difensore {
+    width: 45%;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+}
+
+#immagine-attaccante {
+    float: left;
+}
+
+#immagine-difensore {
+    float: right;
+}
+
+/* Stili per il risultato della sfida */
+#risultato-sfida {
+    clear: both;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Stili per l'effetto macchina da scrivere */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e0e0e0; }
+}
+
+.typewriter-effect {
+    overflow: hidden;
+    border-right: .15em solid #e0e0e0;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typewriter 3.5s steps(40, end),
+        blinkCursor .75s step-end infinite;
+}
+
+/* Stili per i campi di input e i pulsanti nelle carte */
+.carta input[type="number"] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.carta .btn-incremento,
+.carta .btn-decremento {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.carta .btn-incremento:hover,
+.carta .btn-decremento:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    transform: scale(1.05);
+}
+
+/* Stili per il contenitore delle carte */
+#container-carte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stili per le carte */
+.carta {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.carta:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+.carta h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.carta p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Stili per le icone degli estri */
+.icona-estro {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Stili per i valori modificati */
+.valore-modificato {
+    color: #ff4c4c;
+}
+
+/* Stili per il log delle modifiche */
+#contenitore-log {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.log-entry {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+/* Sezione Bersagli */
+#target-section {
+    display: none; /* Nascosto per impostazione predefinita */
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffea;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+#target-section.active {
+    display: block;
+    max-height: 500px; /* Adatta secondo necessità */
+    opacity: 1;
+}
+
+#target-section .close-button {
+    border: 2px solid #ff4c4c;
+    color: #ff4c4c;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+    float: right;
+}
+
+#target-section .close-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+/* Stili per la tabella del Cerchio degli Estri */
+.cerchio-estri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cerchio-estri-table th,
+.cerchio-estri-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cerchio-estri-table th {
+    background-color: #1a1a1a;
+    color: #00ffea;
+    font-weight: bold;
+}
+
+.cerchio-estri-table td {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.cerchio-estri-table td.positive {
+    color: #2ecc40; /* Verde per i bonus */
+}
+
+.cerchio-estri-table td.negative {
+    color: #ff4136; /* Rosso per i malus */
+}
+
+/* Stili per l'header della modale del Cerchio degli Estri */
+#cerchio-estri-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* Stili per il logo VS nell'animazione */
+#logo-vs {
+    display: none; /* Nascondi di default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+}
+
+/* Stili per l'animazione della sfida */
+#animazione-sfida {
+    display: none; /* Nascondi di default */
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#immagine-attaccante, #immagine-difensore {
+    width: 45%;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+}
+
+#immagine-attaccante {
+    float: left;
+}
+
+#immagine-difensore {
+    float: right;
+}
+
+/* Stili per il risultato della sfida */
+#risultato-sfida {
+    clear: both;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Stili per l'effetto macchina da scrivere */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e0e0e0; }
+}
+
+.typewriter-effect {
+    overflow: hidden;
+    border-right: .15em solid #e0e0e0;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typewriter 3.5s steps(40, end),
+        blinkCursor .75s step-end infinite;
+}
+
+/* Stili per i campi di input e i pulsanti nelle carte */
+.carta input[type="number"] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.carta .btn-incremento,
+.carta .btn-decremento {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.carta .btn-incremento:hover,
+.carta .btn-decremento:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    transform: scale(1.05);
+}
+
+/* Stili per il contenitore delle carte */
+#container-carte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stili per le carte */
+.carta {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.carta:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+.carta h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.carta p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Stili per le icone degli estri */
+.icona-estro {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Stili per i valori modificati */
+.valore-modificato {
+    color: #ff4c4c;
+}
+
+/* Stili per il log delle modifiche */
+#contenitore-log {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.log-entry {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+/* Sezione Bersagli */
+#target-section {
+    display: none; /* Nascosto per impostazione predefinita */
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffea;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+#target-section.active {
+    display: block;
+    max-height: 500px; /* Adatta secondo necessità */
+    opacity: 1;
+}
+
+#target-section .close-button {
+    border: 2px solid #ff4c4c;
+    color: #ff4c4c;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+    float: right;
+}
+
+#target-section .close-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+/* Stili per la tabella del Cerchio degli Estri */
+.cerchio-estri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cerchio-estri-table th,
+.cerchio-estri-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cerchio-estri-table th {
+    background-color: #1a1a1a;
+    color: #00ffea;
+    font-weight: bold;
+}
+
+.cerchio-estri-table td {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.cerchio-estri-table td.positive {
+    color: #2ecc40; /* Verde per i bonus */
+}
+
+.cerchio-estri-table td.negative {
+    color: #ff4136; /* Rosso per i malus */
+}
+
+/* Stili per l'header della modale del Cerchio degli Estri */
+#cerchio-estri-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+/* Stili per il logo VS nell'animazione */
+#logo-vs {
+    display: none; /* Nascondi di default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    color: #ff4c4c;
+    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c;
+}
+
+/* Stili per l'animazione della sfida */
+#animazione-sfida {
+    display: none; /* Nascondi di default */
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#immagine-attaccante, #immagine-difensore {
+    width: 45%;
+    border: 2px solid #00ffea;
+    border-radius: 10px;
+}
+
+#immagine-attaccante {
+    float: left;
+}
+
+#immagine-difensore {
+    float: right;
+}
+
+/* Stili per il risultato della sfida */
+#risultato-sfida {
+    clear: both;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Stili per l'effetto macchina da scrivere */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e0e0e0; }
+}
+
+.typewriter-effect {
+    overflow: hidden;
+    border-right: .15em solid #e0e0e0;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typewriter 3.5s steps(40, end),
+        blinkCursor .75s step-end infinite;
+}
+
+/* Stili per i campi di input e i pulsanti nelle carte */
+.carta input[type="number"] {
+    width: 60px;
+    margin-left: 10px;
+}
+
+.carta .btn-incremento,
+.carta .btn-decremento {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #00ffea;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #00ffea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.carta .btn-incremento:hover,
+.carta .btn-decremento:hover {
+    background-color: rgba(0, 255, 234, 0.2);
+    transform: scale(1.05);
+}
+
+/* Stili per il contenitore delle carte */
+#container-carte {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Stili per le carte */
+.carta {
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.carta:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.5);
+}
+
+.carta h3 {
+    margin-top: 0;
+    color: #00ffea;
+    text-shadow: 0 0 5px #00ffea;
+}
+
+.carta p {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Stili per le icone degli estri */
+.icona-estro {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* Stili per i valori modificati */
+.valore-modificato {
+    color: #ff4c4c;
+}
+
+/* Stili per il log delle modifiche */
+#contenitore-log {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid rgba(0, 255, 234, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.3);
+    overflow-y: auto;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.log-entry {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+/* Sezione Bersagli */
+#target-section {
+    display: none; /* Nascosto per impostazione predefinita */
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffea;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+#target-section.active {
+    display: block;
+    max-height: 500px; /* Adatta secondo necessità */
+    opacity: 1;
+}
+
+#target-section .close-button {
+    border: 2px solid #ff4c4c;
+    color: #ff4c4c;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+    float: right;
+}
+
+#target-section .close-button:hover {
+    background-color: rgba(255, 76, 76, 0.2);
+    box-shadow: 0 0 20px rgba(255, 76, 76, 0.7);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #player-objects-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #controls {
+        flex-direction: column;
+        bottom: 10px;
+    }
+}
