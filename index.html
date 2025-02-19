@@ -1,120 +1,102 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Supporto Gioco</title>
-    <!-- Integrazione di Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Collegamento al file CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Aggiunta di stili specifici per la nuova sezione bersagli -->
-    <style>
-        /* Stili per la sezione bersagli */
-        
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Supporto Gioco</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Collegamento al CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Gestione Navi, Turni e Oggetti</h1>
+  <h1>Gestione Navi, Turni e Oggetti</h1>
 
-    <!-- Selezione Modalità -->
-    <div id="mode-selection">
-        <h3>Seleziona Modalità:</h3>
-        <button onclick="startGame(1)">1 Giocatore</button>
-        <button onclick="startGame(2)">2 Giocatori</button>
+  <!-- Selezione Modalità -->
+  <div id="mode-selection">
+    <h3>Seleziona Modalità:</h3>
+    <button onclick="startGame(1)">1 Giocatore</button>
+    <button onclick="startGame(2)">2 Giocatori</button>
+  </div>
+
+  <!-- Pulsante per oggetti usati -->
+  <button id="used-objects-button" onclick="openUsedObjectsModal()">
+    <img src="images/used_objects_icon.svg" alt="Oggetti Usati" width="32" height="32">
+  </button>
+
+  <!-- Altri pulsanti -->
+  <button id="open-cerchio-estri" class="action-button">Estri</button>
+  <button id="open-target-section" class="action-button">Bersagli</button>
+
+  <!-- Modale Oggetti Usati -->
+  <div id="used-objects-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeUsedObjectsModal()">&times;</span>
+      <h3>Oggetti Usati</h3>
+      <div id="used-objects-container"></div>
     </div>
+  </div>
 
-    <!-- Pulsanti per oggetti usati ed Estri -->
-    <button id="used-objects-button" onclick="openUsedObjectsModal()">
-        <!-- Puoi utilizzare un'icona -->
-        <img src="images/used_objects_icon.svg" alt="Oggetti Usati" width="32" height="32">
-    </button>
-    
-    <button id="open-cerchio-estri" class="action-button">Estri</button>
-    <button id="open-target-section" class="action-button">Bersagli</button>
+  <!-- Sezione Bersagli (non modale) -->
+  <div id="target-section">
+    <button class="close-button" id="close-target-section">Chiudi</button>
+    <h2>Bersagliare Carte</h2>
+    <p>Quante carte hai in campo?</p>
+    <input type="number" id="card-count" min="2" placeholder="Inserisci il numero di carte" />
+    <button class="action-button" id="select-target-cards">Conferma</button>
+  </div>
 
-    <!-- Modale per gli Oggetti Usati -->
-    <div id="used-objects-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeUsedObjectsModal()">&times;</span>
-            <h3>Oggetti Usati</h3>
-            <div id="used-objects-container"></div>
-        </div>
+  <!-- Modalità Sincronizzazione per 2 giocatori -->
+  <div id="sync-area" class="hidden">
+    <h3>Connessione per 2 Giocatori</h3>
+    <div id="offer-section">
+      <h4>Creare Connessione</h4>
+      <button onclick="createOffer()">Crea Offerta</button><br><br>
+      <textarea id="local-offer" rows="5" placeholder="Copia e invia questa offerta al secondo giocatore" readonly></textarea><br>
     </div>
-
-    <!-- Sezione Bersagli (invece della modale) -->
-    <div id="target-section">
-        <button class="close-button" id="close-target-section">Chiudi</button>
-        <h2>Bersagliare Carte</h2>
-        <p>Quante carte hai in campo?</p>
-        <input type="number" id="card-count" min="2" placeholder="Inserisci il numero di carte" />
-        <button class="action-button" id="select-target-cards">Conferma</button>
+    <div id="answer-section">
+      <h4>Rispondere alla Connessione</h4>
+      <textarea id="remote-offer" rows="5" placeholder="Incolla l'offerta ricevuta dal primo giocatore"></textarea><br>
+      <button onclick="createAnswer()">Crea Risposta</button><br><br>
+      <textarea id="local-answer" rows="5" placeholder="Copia e invia questa risposta al primo giocatore" readonly></textarea><br>
     </div>
-	
-	
-
-	
-    <!-- Modalità Sincronizzazione -->
-    <div id="sync-area" class="hidden">
-        <h3>Connessione per 2 Giocatori</h3>
-        <div id="offer-section">
-            <h4>Creare Connessione</h4>
-            <button onclick="createOffer()">Crea Offerta</button><br><br>
-            <textarea id="local-offer" rows="5" placeholder="Copia e invia questa offerta al secondo giocatore" readonly></textarea><br>
-        </div>
-        <div id="answer-section">
-            <h4>Rispondere alla Connessione</h4>
-            <textarea id="remote-offer" rows="5" placeholder="Incolla l'offerta ricevuta dal primo giocatore"></textarea><br>
-            <button onclick="createAnswer()">Crea Risposta</button><br><br>
-            <textarea id="local-answer" rows="5" placeholder="Copia e invia questa risposta al primo giocatore" readonly></textarea><br>
-        </div>
-        <div id="connect-section">
-            <h4>Finalizza Connessione</h4>
-            <textarea id="remote-answer" rows="5" placeholder="Incolla la risposta ricevuta dal secondo giocatore"></textarea><br>
-            <button onclick="finalizeConnection()">Connetti</button>
-        </div>
+    <div id="connect-section">
+      <h4>Finalizza Connessione</h4>
+      <textarea id="remote-answer" rows="5" placeholder="Incolla la risposta ricevuta dal secondo giocatore"></textarea><br>
+      <button onclick="finalizeConnection()">Connetti</button>
     </div>
+  </div>
 
-    <!-- Area di Gioco -->
-    <div id="game-area" class="hidden">
-        <div id="game">
-            <h3>Zona Attuale: <span id="current-zone">?</span></h3>
-            <button class="action-button" onclick="setZone()">Imposta Zona</button>
-            <h3 id="turn-indicator">Turno del Giocatore</h3>
-            <h3>Turno: <span id="turn-counter">0</span></h3>
-            <h3>Round: <span id="round-counter">0</span></h3>
-            <!-- Contenitore per i pulsanti di controllo -->
-            <div id="controls">
-                <button class="action-button" onclick="nextTurn()">Prossimo Turno</button>
-                
-                <button class="action-button" onclick="resetGame()">Riavvia Gioco</button>
-            </div>
-        </div>
-        
-        <div class="container" id="ships-container"></div>
-
-        <!-- Area degli Oggetti -->
-        <div id="objects-area">
-            <h3>I tuoi Oggetti</h3>
-            <div id="player-objects-container"></div>
-        </div>
-
-        <div class="log" id="log">Log degli eventi:</div>
-    </div>
-    
-    <!-- Modale per il Cerchio degli Estri -->
-    <div id="modal-cerchio-estri" class="modal">
-      <div class="modal-content">
-        <span class="close" id="close-cerchio-estri">&times;</span>
-        <h2>Estri</h2>
-        <!-- Contenuto del cerchio degli estri -->
-        <div id="cerchio-estri-content">
-          <!-- Il contenuto verrà generato dinamicamente -->
-        </div>
+  <!-- Area di Gioco -->
+  <div id="game-area" class="hidden">
+    <div id="game">
+      <h3>Zona Attuale: <span id="current-zone">?</span></h3>
+      <button class="action-button" onclick="setZone()">Imposta Zona</button>
+      <h3 id="turn-indicator">Turno del Giocatore</h3>
+      <h3>Turno: <span id="turn-counter">1</span></h3>
+      <h3>Round: <span id="round-counter">1</span></h3>
+      <div id="controls">
+        <button class="action-button" onclick="nextTurn()">Prossimo Turno</button>
+        <button class="action-button" onclick="resetGame()">Riavvia Gioco</button>
       </div>
     </div>
+    <div class="container" id="ships-container"></div>
+    <div id="objects-area">
+      <h3>I tuoi Oggetti</h3>
+      <div id="player-objects-container"></div>
+    </div>
+    <div class="log" id="log">Log degli eventi:</div>
+  </div>
 
-    <!-- Collegamento al file JavaScript -->
-    <script src="script.js"></script>
+  <!-- Modale Cerchio degli Estri -->
+  <div id="modal-cerchio-estri" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-cerchio-estri">&times;</span>
+      <h2>Estri</h2>
+      <div id="cerchio-estri-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
