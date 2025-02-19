@@ -24,9 +24,9 @@ const bonusObjects = [
 /* Stato del gioco */
 let ships = [];
 let currentZone = "?";
-let turnCounter = 0;        // Conta i cicli completi (player+navy) 
-let roundCounter = 1;       // Inizia dal Round 1
-let playerTurn = true;      // Il gioco parte con il turno del Giocatore
+let turnCounter = 1;        // Partiamo da 1: il primo turno è del Giocatore
+let playerTurn = true;      // Se turnCounter è dispari → Giocatore; se pari → Navi
+// Il round corrente sarà Math.ceil(turnCounter/2)
 let playerObjects = [];
 let usedObjects = [];
 let availableObjects = [];
@@ -133,7 +133,7 @@ function syncGameState(state) {
 function initializeGame() {
   ships = [];
   currentZone = "?";
-  turnCounter = 1;
+  turnCounter = 1;           // Il primo turno (1) è del Giocatore
   playerTurn = true;
   playerObjects = [];
   usedObjects = [];
@@ -143,7 +143,7 @@ function initializeGame() {
   renderObjects();
   updateTurnIndicator();
   updateCounters();
-  logEvent("Giocatore Turno 1 Round 1 iniziato.");
+  logEvent("Inizio Round 1 – Turno 1: Turno del Giocatore");
 }
 
 function generateShips() {
@@ -255,7 +255,10 @@ function useObject(id) {
 }
 
 function activateAlarm(id) {
-  if (!playerTurn) { alert("Non è il tuo turno!"); return; }
+  if (!playerTurn) { 
+    alert("Non è il tuo turno!"); 
+    return; 
+  }
   const ship = ships.find(s => s.id === id);
   if (ship && !ship.alarm) {
     ship.alarm = true;
@@ -268,10 +271,16 @@ function activateAlarm(id) {
 }
 
 function damageShip(id) {
-  if (!playerTurn) { alert("Non è il tuo turno!"); return; }
+  if (!playerTurn) { 
+    alert("Non è il tuo turno!"); 
+    return; 
+  }
   const damageInput = document.getElementById(`damage-${id}`);
   const damage = parseInt(damageInput.value, 10);
-  if (isNaN(damage) || damage < 0) { alert("Inserisci un valore di danno valido."); return; }
+  if (isNaN(damage) || damage < 0) { 
+    alert("Inserisci un valore di danno valido."); 
+    return; 
+  }
   const ship = ships.find(s => s.id === id);
   if (ship) {
     ship.shields -= damage;
@@ -300,12 +309,12 @@ function updateSkillStatus(id) {
       skillElem.innerHTML = `Skill: Attiva tra ${ship.skillCountdown} turni`;
       if (ship.skillCountdown === 1) {
         skillElem.classList.add("skill-warning");
-        logEvent(`La skill della Nave ${id} si attiverà al prossimo turno!`);
+        logEvent(`La skill della Nave ${ship.id} si attiverà al prossimo turno!`);
       }
     } else if (ship.skillCountdown === 1) {
       ship.skillCountdown--;
       skillElem.innerHTML = `Skill: ATTIVA!`;
-      logEvent(`Skill della Nave ${id} attivata!`);
+      logEvent(`Skill della Nave ${ship.id} attivata!`);
       applyShipSkillEffect(ship);
       ship.alarm = false;
       ship.skillCountdown = null;
@@ -337,30 +346,36 @@ function applyShipSkillEffect(ship) {
   }
 }
 
+/* GESTIONE DEI TURNI */
+/*
+  Il ciclo dei turni avviene come segue:
+  - turnCounter = 1 (dispari) → Turno del Giocatore (Round Math.ceil(1/2)=1)
+  - turnCounter = 2 (pari)   → Turno delle Navi (Round Math.ceil(2/2)=1)
+  - turnCounter = 3 (dispari) → Turno del Giocatore (Round Math.ceil(3/2)=2)
+  - turnCounter = 4 (pari)   → Turno delle Navi (Round Math.ceil(4/2)=2)
+  ... e così via.
+*/
 function nextTurn() {
-  if (playerTurn) {
-    // Fine del turno del giocatore
-    logEvent(`Turno del Giocatore ${roundCounter} completato.`);
-    playerTurn = false;
-    turnIndicator.innerText = "Turno delle Navi";
+  if (turnCounter % 2 === 1) {
+    // Turno del Giocatore (dispari)
+    logEvent(`Turno del Giocatore (Round ${Math.ceil(turnCounter / 2)}) completato. (Turno ${turnCounter})`);
   } else {
-    // Esecuzione del turno delle navi
+    // Turno delle Navi (pari)
     ships.forEach(ship => {
       if (ship.skillCountdown !== null) {
         updateSkillStatus(ship.id);
       }
     });
-    logEvent("Turno delle Navi completato.");
-    playerTurn = true;
-    turnIndicator.innerText = "Turno del Giocatore";
-    
-    // Incrementa il contatore dei cicli completi e il Round
-    turnCounter++;
-    roundCounter++;
-    updateCounters();
-
-    // Controlla se attivare la Modalità Morte
-    if (roundCounter > MAX_ROUNDS && !deathModeActivated) {
+    logEvent(`Turno delle Navi (Round ${Math.ceil(turnCounter / 2)}) completato. (Turno ${turnCounter})`);
+    // Assegna bonus se il round è multiplo di BONUS_INTERVAL
+    if (Math.ceil(turnCounter / 2) % BONUS_INTERVAL === 0 && availableObjects.length > 0) {
+      const bonus = getRandomObjects(1)[0];
+      playerObjects.push(bonus);
+      logEvent(`Nuovo oggetto bonus ricevuto: ${bonus.name}`);
+      renderObjects();
+    }
+    // Controlla Modalità Morte
+    if (Math.ceil(turnCounter / 2) > MAX_ROUNDS && !deathModeActivated) {
       deathModeActivated = true;
       logEvent("Modalità Morte attivata!");
       alert("Modalità Morte attivata!");
@@ -370,16 +385,23 @@ function nextTurn() {
       deathModeIndicator.classList.add('death-mode');
       document.getElementById('game-area').appendChild(deathModeIndicator);
     }
-
-    // Assegna bonus se il round è multiplo di BONUS_INTERVAL
-    if (roundCounter % BONUS_INTERVAL === 0 && availableObjects.length > 0) {
-      const bonus = getRandomObjects(1)[0];
-      playerObjects.push(bonus);
-      logEvent(`Nuovo oggetto bonus ricevuto: ${bonus.name}`);
-      renderObjects();
-    }
   }
+  // Incrementa il contatore e aggiorna il turno in base al nuovo valore:
+  turnCounter++;
+  // Se il nuovo turnCounter è dispari, è il turno del Giocatore; se pari, quello delle Navi.
+  playerTurn = (turnCounter % 2 === 1);
+  updateTurnIndicator();
+  updateCounters();
   syncAndSendState();
+}
+
+function updateTurnIndicator() {
+  turnIndicator.innerText = playerTurn ? "Turno del Giocatore" : "Turno delle Navi";
+}
+
+function updateCounters() {
+  turnCounterElement.innerText = turnCounter;
+  roundCounterElement.innerText = Math.ceil(turnCounter / 2);
 }
 
 function setZone() {
@@ -465,15 +487,6 @@ function syncAndSendState() {
     };
     dataChannel.send(JSON.stringify(state));
   }
-}
-
-function updateTurnIndicator() {
-  turnIndicator.innerText = playerTurn ? "Turno del Giocatore" : "Turno delle Navi";
-}
-
-function updateCounters() {
-  turnCounterElement.innerText = turnCounter;
-  roundCounterElement.innerText = roundCounter;
 }
 
 /* CERCHIO DEGLI ESTRI */
@@ -568,14 +581,14 @@ document.getElementById("open-target-section").addEventListener("click", openTar
 document.getElementById("close-target-section").addEventListener("click", closeTargetSection);
 document.getElementById("select-target-cards").addEventListener("click", selectTargetCards);
 
-// Chiude la modale se l'utente clicca fuori (controlla se l'elemento cliccato ha la classe "modal")
+// Chiude la modale se l'utente clicca fuori (verifica se l'elemento cliccato ha la classe "modal")
 window.onclick = function (event) {
   if (event.target.classList.contains("modal")) {
     event.target.style.display = "none";
   }
 };
 
-/* Esponi funzioni per chiamate inline */
+// Esponi funzioni per chiamate inline
 window.openTargetSection = openTargetSection;
 window.closeTargetSection = closeTargetSection;
 window.selectTargetCards = selectTargetCards;
